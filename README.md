@@ -6,7 +6,7 @@ API for ordering sandwiches.
 Background
 ----------
 
-All sandwiches come open face with Dempster 12 Grain bread.
+All sandwiches come open face with toasted white bread.
 
 Topping order is not guaranteed.
 
