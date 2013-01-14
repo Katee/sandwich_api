@@ -10,15 +10,9 @@ var orders = {};
 function get_fillings(req, res, next) {
   // Hard code the fillings into our code for now
   var fillings = {"fillings": [
-    {'id': 1, 'name': 'Strawberry Jam'},
-    {'id': 2, 'name': 'Rasberry Jam'},
-    {'id': 3, 'name': 'Sliced Banana'},
-    {'id': 4, 'name': 'Peanut Butter'},
-    {'id': 5, 'name': 'Tahini'},
-    {'id': 6, 'name': 'Butter'},
-    {'id': 7, 'name': 'Salt'},
-    {'id': 8, 'name': 'Sugar'},
-    {'id': 9, 'name': 'Vegemite'}
+    {'id': 1, 'name': 'Cheese'},
+    {'id': 2, 'name': 'Bacon'},
+    {'id': 3, 'name': 'Nutella'}
   ]};
 
   res.send(fillings);
