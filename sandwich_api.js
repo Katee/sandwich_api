@@ -10,9 +10,15 @@ var orders = {};
 function get_fillings(req, res, next) {
   // Hard code the fillings into our code for now
   var fillings = {"fillings": [
-    {'id': 1, 'name': 'Cheese'},
-    {'id': 2, 'name': 'Bacon'},
-    {'id': 3, 'name': 'Nutella'}
+    {'id': 1, 'name': 'Black Diamond Medium Cheddar'},
+    {'id': 2, 'name': 'Schneider\'s Bacon'},
+    {'id': 3, 'name': 'Schneider\'s Bologna'},
+    {'id': 4, 'name': 'Fresh Alfalfa Sprouts'},
+    {'id': 5, 'name': 'French\'s Mustard'},
+    {'id': 6, 'name': 'Hellman\'s Mayo'},
+    {'id': 7, 'name': 'Tomato'},
+    {'id': 8, 'name': 'Kraft Smooth Peanut Butter'},
+    {'id': 9, 'name': 'Nutella'}
   ]};
 
   res.send(fillings);
@@ -41,6 +47,10 @@ function get_order(req, res, next) {
   res.send(orders[id]);
 }
 
+function get_orders(req, res, next) {
+  res.send(orders);
+}
+
 function update_order_status(req, res, next) {
   var id = req.params.id;
   var status = req.params.status;
@@ -63,6 +73,7 @@ server.get('/fillings', get_fillings);
 
 // orders
 server.post('/order', post_new_order);
+server.get('/orders', get_orders);
 server.get('/order/:id', get_order);
 server.post('/order/:id/status', update_order_status);
 
