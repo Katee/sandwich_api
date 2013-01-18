@@ -6,7 +6,7 @@ API for ordering sandwiches.
 Background
 ----------
 
-All sandwiches come open face with toasted white bread.
+All sandwiches come open face with bread of the day.
 
 Topping order is not guaranteed.
 
@@ -30,6 +30,9 @@ Check order 0 status.
 
 Sandwich Maker Usage
 --------------------
+
+Get a list of all orders.
+>    curl -v http://localhost:8181/orders
 
 Update order 0 status.
 >    curl -v -H "Content-Type: application/json" -X POST -d "{\"status\": \"in progress\", \"auth_key\": \"ABC123\"}" http://localhost:8181/order/0/status
