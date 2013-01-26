@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Sandwich API</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script>
+    $(document).ready(function(){
+      // make checkboxes for the fillings
+      $.ajax('/fillings').done(function(data){
+        $.each(data.fillings, function(i, filling){
+          $('#fillings').append('<label><input type="checkbox" name="fillings" value="'+filling.id+'" />'+filling.name+'</label>');
+        });
+      });
+      $('button').on('click', function(e){
+        e.preventDefault();
+        $.post('/order', {fillings: $(this).serialize()}, function(data){
+          $('#order-result').html('You are order id: ' + data.id + '. <br />See the <a href="queue.html">queue</a>.');
+        });
+        $(this).attr('disabled', 'disabled');
+        return false;
+      });
+    });
+	</script>
+</head>
+<body>
+  <form id="content">
+    <h2>Make Your Sandwich</h2>
+    <div id="fillings"></div>
+    <button id="order" type="submit">Order</button>
+    <div id="order-result"></div>
+  </form>
+</body>
+</html>

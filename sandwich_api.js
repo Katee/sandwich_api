@@ -1,4 +1,5 @@
 var restify = require('restify');
+var static = require('node-static');
 
 // Simple administration authorization key
 var auth_key = "ABC123";
@@ -76,6 +77,12 @@ server.post('/order', post_new_order);
 server.get('/orders', get_orders);
 server.get('/order/:id', get_order);
 server.post('/order/:id/status', update_order_status);
+
+// serve up static files
+file = new static.Server('./public');
+server.get(/^\/.*/, function(req, res, next) {
+  file.serve(req, res, next);
+});
 
 server.listen(8181, function() {
   console.log('%s listening at %s', server.name, server.url);

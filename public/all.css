@@ -1,0 +1,18 @@
+body {
+  font-family: sans-serif;
+}
+h2 {
+  font-family: Georgia, serif;
+}
+#content {
+  max-width: 17em;
+  margin: 0 auto;
+}
+label {
+  display: block;
+  cursor: pointer;
+  margin: .2em 0;
+}
+button {
+  float: right;
+}
