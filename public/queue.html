@@ -7,10 +7,19 @@
   <link rel="stylesheet" type="text/css" href="/all.css" media="all" />
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 	<script>
+    var fillings;
     $(document).ready(function(){
-      $.ajax('/orders').done(function(data){
-        $.each(data, function(i, order){
-          $('#queue').append('<li data-id="'+order.id+'">Order '+i+': '+order.status+'</li>');
+      $.ajax('/fillings').done(function(data){
+        fillings = data.fillings;
+        $.ajax('/orders').done(function(data){
+          $.each(data, function(i, order){
+            var $order = $('<li data-id="'+order.id+'">Order '+i+': '+order.status+'<br />Fillings: <span class="fillings"></span></li>');
+            var fillingNames = $.map(order.fillings.split(','), function(i, filling){
+              return fillings[Number(filling)].name;
+            });
+            $order.find('.fillings').append(fillingNames.join(', '));
+            $('#queue').append($order);
+          });
         });
       });
     });
