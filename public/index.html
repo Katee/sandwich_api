@@ -15,8 +15,9 @@
         });
       });
       $('button').on('click', function(e){
+        var fillings = $.extend([], $(this).parents('form').find('input:checked').map(function(){return $(this).attr('value');})).join(',');
         e.preventDefault();
-        $.post('/order', {fillings: $(this).serialize()}, function(data){
+        $.post('/order', {fillings: fillings}, function(data){
           $('#order-result').html('You are order id: ' + data.id + '. <br />See the <a href="queue.html">queue</a>.');
         });
         $(this).attr('disabled', 'disabled');
